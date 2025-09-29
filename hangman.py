@@ -4,9 +4,10 @@ import random
 words = ['apple', 'banana', 'cherry', 'date', 'elderberry']
 
 word = random.choice(words)
+print('FOR TESTING', word)
 
 # Initial list of guessed lets with underscores, eg. _ _ _ _ _
-guessed = ['_'] * len(word)
+correct_guesses = ['_'] * len(word)
 
 # Set total number of attempts - this won't change
 attempts = 6
@@ -17,16 +18,11 @@ used_letters = set()
 # Initialize game with welcome message & current state
 print()
 print("Welcome to Hangman!")
-print("Word: ", " ".join(guessed))
+print("Word: ", " ".join(correct_guesses))
 print("Attempts left:", attempts)
 print("Used letters:", " ".join(sorted(used_letters)))
 
-while attempts > 0 and "_" in guessed:
-  # Display current state
-  print("\nWord: ", " ".join(guessed))
-  print("Attempts left:", attempts)
-  print("Used letters:", " ".join(sorted(used_letters)))
-
+while attempts > 0 and "_" in correct_guesses:
   # Get and validate guess
   guess = input("Guess a letter: ").lower()
 
@@ -46,16 +42,21 @@ while attempts > 0 and "_" in guessed:
 
   # for testing,decrement attempts
   attempts -= 1
-  used_letters.add(guess)
 
   # Process valid guess
-  # if guess is in word, 
-  # update guessed
-  # if guess is not in word, 
-  # and add to used_letters
+  if guess in word:
+    # Loop over correct_guesses and replace with current letter or replace the underscores
+    for i,letter in enumerate(word):
+      if letter == guess:
+        correct_guesses[i] = letter
 
-  # Present game state to user
-  print("\nWord: ", " ".join(guessed))
+  else:
+    # If guess is not in word, add to used_letters
+    used_letters.add(guess)
+
+  # Present new game state to user
+  print()
+  print("Word: ", " ".join(correct_guesses))
   print("Attempts left:", attempts)
   print("Used letters:", " ".join(sorted(used_letters)))
 
@@ -63,7 +64,7 @@ while attempts > 0 and "_" in guessed:
 
 # Final win/loss message after loop is over
 # End of game
-if "_" not in guessed:
+if "_" not in correct_guesses:
   print("\n🎉 You win! The word was:", word)
 else:
   print("\n💀 Game over! The word was:", word)
