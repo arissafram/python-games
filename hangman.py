@@ -3,8 +3,8 @@ import random
 # Hardcoded words
 words = ['apple', 'banana', 'cherry', 'date', 'elderberry']
 
+# Select a random word from the list
 word = random.choice(words)
-print('FOR TESTING', word)
 
 # Initial list of guessed lets with underscores, eg. _ _ _ _ _
 correct_guesses = ['_'] * len(word)
@@ -23,7 +23,7 @@ print("Attempts left:", attempts)
 print("Used letters:", " ".join(sorted(used_letters)))
 
 while attempts > 0 and "_" in correct_guesses:
-  # Get and validate guess
+  # Prompt user for guess
   guess = input("Guess a letter: ").lower()
 
   # is guess a letter
@@ -39,9 +39,7 @@ while attempts > 0 and "_" in correct_guesses:
     print("You already guessed that letter")
     continue
 
-
-  # for testing,decrement attempts
-  attempts -= 1
+  used_letters.add(guess)
 
   # Process valid guess
   if guess in word:
@@ -51,8 +49,8 @@ while attempts > 0 and "_" in correct_guesses:
         correct_guesses[i] = letter
 
   else:
-    # If guess is not in word, add to used_letters
-    used_letters.add(guess)
+    # If guess is not in word, add to used_letters and decrement attempts
+    attempts -= 1
 
   # Present new game state to user
   print()
@@ -61,9 +59,7 @@ while attempts > 0 and "_" in correct_guesses:
   print("Used letters:", " ".join(sorted(used_letters)))
 
 
-
-# Final win/loss message after loop is over
-# End of game
+# Display final game state
 if "_" not in correct_guesses:
   print("\n🎉 You win! The word was:", word)
 else:
