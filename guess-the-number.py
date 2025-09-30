@@ -1,7 +1,7 @@
 import random
 
 # Initialize random number
-min_num = 0
+min_num = 1
 max_num = 100
 
 # Set random number
