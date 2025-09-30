@@ -1,8 +1,8 @@
 import random
 
-MIN_NUMBER = 1
-MAX_NUMBER = 100
 MAX_GUESSES = 7
+MAX_NUMBER = 100
+MIN_NUMBER = 1
 
 # Prompt user and validate innput
 def get_valid_guess(min_num, max_num):
@@ -42,8 +42,8 @@ def play_game():
   initial_num_guesses = MAX_GUESSES
   current_num_guesses = initial_num_guesses
   is_correct_guess = False
-  min_num = MIN_NUMBER
   max_num = MAX_NUMBER
+  min_num = MIN_NUMBER
   random_number = random.randint(min_num, max_num)
 
   #Main game loop
@@ -76,4 +76,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+  main()
