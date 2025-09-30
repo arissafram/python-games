@@ -40,10 +40,10 @@ while current_num_guesses > 0:
     break
   elif guess > random_number:
     max_num = guess - 1
-    print(f"\n> Too high. Guess again between {min_num} and {max_num}")
+    print(f"\n> Too high. Guess again between {min_num} and {max_num}:")
   else:
     min_num = guess + 1
-    print(f"\n> Too low. Guess again between {min_num} and {max_num}")
+    print(f"\n> Too low. Guess again between {min_num} and {max_num}:")
 
   
 
