@@ -61,6 +61,6 @@ while attempts > 0 and "_" in correct_guesses:
 
 # Display final game state
 if "_" not in correct_guesses:
-  print("\n🎉 You win! The word was:", word)
+  print("\nYou win! The word was:", word.upper())
 else:
-  print("\n💀 Game over! The word was:", word)
+  print("\nGame over! The word was:", word.upper())
