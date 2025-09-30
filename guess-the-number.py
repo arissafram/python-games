@@ -4,9 +4,8 @@ import random
 min_num = 0
 max_num = 100
 
-
+# Set random number
 random_number = random.randint(min_num, max_num)
-print("!!RANDOM NUMBER:", random_number)
 
 # Set total number of guesses
 initial_num_guesses = 7
