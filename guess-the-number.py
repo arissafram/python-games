@@ -1,19 +1,23 @@
 import random
 
 # Initialize random number
-random_number = random.randint(0, 100)
-print("FOR TESTING:", random_number)
+min_num = 0
+max_num = 100
+
+print("!!MIN, MAX:", min_num, max_num)
+random_number = random.randint(min_num, max_num)
+print("!!RANDOM NUMBER:", random_number)
 
 # Set total number of guesses
-total_num_guesses = 7
+initial_num_guesses = 7
 
 # Initialize num actual guesses
-num_guesses = total_num_guesses
+current_num_guesses = initial_num_guesses
 
 # Set win boolean
-isCorrectGuess = False
+is_correct_guess = False
 
-while num_guesses > 0:
+while current_num_guesses > 0:
   guess = input("Enter a number: ")
 
   if not guess.isdigit():
@@ -22,24 +26,29 @@ while num_guesses > 0:
   else:
     guess = int(guess)
 
-  if guess < 0:
+  if guess < min_num:
     print("> Enter a number equal to or greater than 0: ")
     continue
 
-  if guess > 100:
+  if guess > max_num:
     print("> Enter a number less than or equal to 0: ")
     continue
 
-  num_guesses -= 1
+  current_num_guesses -= 1
   
   print(guess, random_number)
   if guess == random_number:
-    isCorrectGuess = True
+    is_correct_guess = True
     break
+  
 
 # Handle win/lose logic
-if isCorrectGuess:
-  print("\n You win! You guessed the number in {total_num_guesses} - {num_guesses} tries")
-  print("The number is {random_number}")
+if is_correct_guess:
+  actual_num_guesses = initial_num_guesses - current_num_guesses
+
+  print(f"\nYou win! You guessed the number in {actual_num_guesses} "
+    f"{'try' if actual_num_guesses == 1 else 'tries'}")
+
+  print(f"The number is {random_number}")
 else:
-  print("You lose. The number is {random_number}")
+  print(f"You lose. The number is {random_number}")
