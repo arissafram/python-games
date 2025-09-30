@@ -6,55 +6,58 @@ words = ['apple', 'banana', 'cherry', 'date', 'elderberry']
 # Select a random word from the list
 word = random.choice(words)
 
-# Initial list of guessed lets with underscores, eg. _ _ _ _ _
+# Initialize list of guessed letters with underscores, eg. _ _ _ _ _
 correct_guesses = ['_'] * len(word)
 
-# Set total number of attempts - this won't change
+# Initialize number of attempts - this won't change
 attempts = 6
 
-# Record guesses as a set to avoid duplicates and look up more efficiently
+# Initialize set of used letters to avoid duplicates and look up more efficiently
 used_letters = set()
 
 # Initialize game with welcome message & current state
-print()
-print("Welcome to Hangman!")
-print("Word: ", " ".join(correct_guesses))
+print("\nWelcome to Hangman!")
+print("\nWord: ", " ".join(correct_guesses))
 print("Attempts left:", attempts)
 print("Used letters:", " ".join(sorted(used_letters)))
 
+# Main game loop 
+# Run this until correct_guesses doesn't contain any underscores or attempts run out
 while attempts > 0 and "_" in correct_guesses:
   # Prompt user for guess
   guess = input("Guess a letter: ").lower()
 
-  # is guess a letter
+  # check if guess is a letter
   if not guess.isalpha():
-    print("Please enter a valid letter")
+    print("> Please enter a valid letter")
     continue
   
+  # Check if guess is a single letter
   if len(guess) > 1:
-    print("Please enter a single letter")
+    print("> Please enter a single letter")
     continue
 
+  # Check if guess has already been used
   if guess in used_letters:
-    print("You already guessed that letter")
+    print("> You already guessed that letter")
     continue
 
+  # Add guess to used_letters
   used_letters.add(guess)
 
   # Process valid guess
   if guess in word:
-    # Loop over correct_guesses and replace with current letter or replace the underscores
+    # Loop over correct_guesses and replace underscore with current letter
     for i,letter in enumerate(word):
       if letter == guess:
         correct_guesses[i] = letter
 
   else:
-    # If guess is not in word, add to used_letters and decrement attempts
+    # If guess is not in word, decrement attempts
     attempts -= 1
 
   # Present new game state to user
-  print()
-  print("Word: ", " ".join(correct_guesses))
+  print("\nWord: ", " ".join(correct_guesses))
   print("Attempts left:", attempts)
   print("Used letters:", " ".join(sorted(used_letters)))
 
