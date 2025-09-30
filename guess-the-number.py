@@ -19,11 +19,12 @@ is_correct_guess = False
 while current_num_guesses > 0:
   guess = input("Enter a number: ")
 
-  if not guess.isdigit():
-    print("> Enter a valid number: ")
-    continue
-  else:
+  # Ensure input is a valid number
+  try:
     guess = int(guess)
+  except ValueError:
+    print("> Enter a valid number")
+    continue
 
   if guess < min_num:
     print(f"> Enter a number equal to or greater than {min_num}: ")
