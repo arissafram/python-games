@@ -4,7 +4,7 @@ import random
 min_num = 0
 max_num = 100
 
-print("!!MIN, MAX:", min_num, max_num)
+
 random_number = random.randint(min_num, max_num)
 print("!!RANDOM NUMBER:", random_number)
 
@@ -27,19 +27,25 @@ while current_num_guesses > 0:
     guess = int(guess)
 
   if guess < min_num:
-    print("> Enter a number equal to or greater than 0: ")
+    print(f"> Enter a number equal to or greater than {min_num}: ")
     continue
 
   if guess > max_num:
-    print("> Enter a number less than or equal to 0: ")
+    print(f"> Enter a number less than or equal to {max_num}: ")
     continue
 
   current_num_guesses -= 1
   
-  print(guess, random_number)
   if guess == random_number:
     is_correct_guess = True
     break
+  elif guess > random_number:
+    max_num = guess - 1
+    print(f"\n> Too high. Guess again between {min_num} and {max_num}")
+  else:
+    min_num = guess + 1
+    print(f"\n> Too low. Guess again between {min_num} and {max_num}")
+
   
 
 # Handle win/lose logic
@@ -47,7 +53,7 @@ if is_correct_guess:
   actual_num_guesses = initial_num_guesses - current_num_guesses
 
   print(f"\nYou win! You guessed the number in {actual_num_guesses} "
-    f"{'try' if actual_num_guesses == 1 else 'tries'}")
+        f"{'try' if actual_num_guesses == 1 else 'tries'}")
 
   print(f"The number is {random_number}")
 else:
