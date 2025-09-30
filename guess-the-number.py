@@ -17,17 +17,17 @@ while num_guesses > 0:
   guess = input("Enter a number: ")
 
   if not guess.isdigit():
-    print("> Enter a valid number")
+    print("> Enter a valid number: ")
     continue
   else:
     guess = int(guess)
 
   if guess < 0:
-    print("> Enter a number equal to or greater than 0")
+    print("> Enter a number equal to or greater than 0: ")
     continue
 
   if guess > 100:
-    print("> Enter a number less than or equal to zero")
+    print("> Enter a number less than or equal to 0: ")
     continue
 
   num_guesses -= 1
